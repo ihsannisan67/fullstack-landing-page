@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-forest-dark: #1A3A2A;
+    --color-forest-mid: #2D6A4F;
+    --color-leaf: #52B788;
+    --color-earth: #A0522D;
+    --color-sand: #F5F0E8;
+    --color-cream: #FDFAF4;
+    --color-text: #1C1C1C;
+    --color-muted: #6B7280;
+
+    --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-dm-sans: 'DM Sans', sans-serif;
+    --font-playfair: 'Playfair Display', serif;
+
+    --background: 40 33% 98%;
+    --foreground: 0 0% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11%;
+    --primary: 153 39% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 33% 96%;
+    --secondary-foreground: 0 0% 11%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 40 33% 96%;
+    --accent-foreground: 0 0% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 153 39% 48%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-cream text-[var(--color-text)] font-body antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Scroll reveal animations */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  /* Stagger animation for lists */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  .stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-forest-mid);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-forest-dark);
+}

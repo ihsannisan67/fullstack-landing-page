@@ -3,7 +3,18 @@
 
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy-initialized Resend client
+let resendClient: Resend | null = null
+
+function getResendClient(): Resend | null {
+  if (!isEmailConfigured()) {
+    return null
+  }
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resendClient
+}
 
 interface EmailOptions {
   to: string
@@ -35,8 +46,14 @@ export async function sendLeadNotification(
     }
 
     const adminEmail = process.env.ADMIN_EMAIL || 'admin@langkahhijau.id'
+    const client = getResendClient()
 
-    await resend.emails.send({
+    if (!client) {
+      console.log('[Email Stub] Notification would be sent:', lead)
+      return { success: true }
+    }
+
+    await client.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'noreply@langkahhijau.id',
       to: adminEmail,
       subject: `[LangkahHijau] New Lead: ${lead.name}`,
@@ -74,7 +91,13 @@ export async function sendLeadConfirmation(
       return { success: true }
     }
 
-    await resend.emails.send({
+    const client = getResendClient()
+    if (!client) {
+      console.log('[Email Stub] Confirmation would be sent to:', email)
+      return { success: true }
+    }
+
+    await client.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'noreply@langkahhijau.id',
       to: email,
       subject: 'Terima Kasih - Konsultasi LangkahHijau',

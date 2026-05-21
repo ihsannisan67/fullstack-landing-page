@@ -72,12 +72,15 @@ function StatCard({
       : value
 
   return (
-    <div ref={ref} className="text-center p-6 bg-white/50 rounded-2xl backdrop-blur-sm">
-      <div className="font-display text-4xl md:text-5xl font-bold text-earth mb-2">
+    <div
+      ref={ref}
+      className="bg-cream rounded-2xl p-6 md:p-8 text-center shadow-sm border border-forest-mid/10"
+    >
+      <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-forest-mid mb-2">
         {displayValue}
       </div>
-      <div className="text-forest-dark/80 font-medium mb-2">{label}</div>
-      <div className="text-xs text-muted">Sumber: {source}</div>
+      <div className="text-[var(--color-text)] font-medium mb-2">{label}</div>
+      <div className="text-[var(--color-muted)] text-xs">Sumber: {source}</div>
     </div>
   )
 }

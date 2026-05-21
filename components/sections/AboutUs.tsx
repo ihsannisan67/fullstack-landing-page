@@ -22,7 +22,7 @@ const values = [
     icon: Globe,
     title: 'Berbasis Sains',
     description:
-      'Semua keputusan rehab我们的 didasarkan pada data ilmiah dan best practice internasional. Kami terus mengikuti perkembangan riset terbaru.',
+      'Semua keputusan rehabilitasi kami didasarkan pada data ilmiah dan best practice internasional. Kami terus mengikuti perkembangan riset terbaru.',
   },
   {
     icon: Heart,

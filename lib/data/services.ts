@@ -5,7 +5,7 @@ export const SERVICES: Service[] = [
     id: '1',
     title: 'Revegetasi Lahan Bekas Tambang',
     description:
-      'Restorasi lahan terdegradasi akibat aktivitas pertambangan dengan metode生物ологис и физИчeскиЙ rehabilitasi yang terukur dan berkelanjutan.',
+      'Restorasi lahan terdegradasi akibat aktivitas pertambangan dengan metode biologis dan fisik rehabilitasi yang terukur dan berkelanjutan.',
     icon: 'Mountain',
     features: [
       'Revegetasi dengan species endemic lokal',

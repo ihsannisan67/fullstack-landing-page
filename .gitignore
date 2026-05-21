@@ -39,3 +39,4 @@ public/images/portfolio/*.jpg
 public/images/portfolio/*.png
 public/images/portfolio/*.webp
 !public/images/portfolio/.gitkeep
+.vercel

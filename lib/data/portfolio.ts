@@ -26,7 +26,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     duration: '24 bulan',
     year: '2023',
     description:
-      'Penanaman mangrove untuk melindungi garis pantai dari abrasi dan meningkatkan kualitas habitat pesisir. Projekt kerja sama dengan pemerintah daerah dan komunitas渔民 setempat.',
+      'Penanaman mangrove untuk melindungi garis pantai dari abrasi dan meningkatkan kualitas habitat pesisir. Program kerja sama dengan pemerintah daerah dan komunitas pescadores (nelayan) setempat.',
     stats: {
       treesPlanted: 120000,
       survivalRate: '92%',
@@ -60,7 +60,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     duration: '30 bulan',
     year: '2022',
     description:
-      'Transformasi lahan perkebunan sawit tidak aktif menjadi hutan produktif dengan jenis-jenis pohon native Sumatera. Program ini juga memberikan alternatif pendapatan bagi mantan работников perkebunan.',
+      'Transformasi lahan perkebunan sawit tidak aktif menjadi hutan produktif dengan jenis-jenis pohon native Sumatera. Program ini juga memberikan alternatif pendapatan bagi mantan pekerja perkebunan.',
     stats: {
       treesPlanted: 85000,
       survivalRate: '89%',

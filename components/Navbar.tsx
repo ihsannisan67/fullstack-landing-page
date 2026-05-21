@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, TreePine } from 'lucide-react'
@@ -16,18 +16,28 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  // Handle scroll
-  if (typeof window !== 'undefined' && !scrolled) {
-    window.addEventListener('scroll', () => {
+  // Handle scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-    })
-  }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Check initial state
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Determine text color based on scroll position
+  // Over dark sections (Hero, Problem, AboutUs) use white text
+  // Over light sections use dark text
+  const isOverDarkSection = scrolled
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-cream/95 backdrop-blur-md shadow-md py-3'
+          ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -37,7 +47,13 @@ export function Navbar() {
           <div className="w-10 h-10 bg-leaf rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
             <TreePine className="w-5 h-5 text-white" />
           </div>
-          <span className="font-display font-bold text-xl text-forest-dark">
+          <span
+            className={`font-display font-bold text-xl transition-colors ${
+              isOverDarkSection && !scrolled
+                ? 'text-white'
+                : 'text-forest-dark'
+            }`}
+          >
             LangkahHijau
           </span>
         </Link>
@@ -48,7 +64,11 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-forest-dark/80 hover:text-leaf transition-colors font-medium"
+              className={`font-medium transition-colors ${
+                isOverDarkSection && !scrolled
+                  ? 'text-white/80 hover:text-white'
+                  : 'text-forest-dark/80 hover:text-leaf'
+              }`}
             >
               {link.label}
             </Link>
@@ -64,7 +84,9 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-forest-dark"
+          className={`md:hidden p-2 transition-colors ${
+            isOverDarkSection && !scrolled ? 'text-white' : 'text-forest-dark'
+          }`}
           aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -78,7 +100,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 right-0 bg-cream shadow-lg md:hidden"
+              className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden"
             >
               <div className="flex flex-col p-4 gap-4">
                 {navLinks.map((link) => (
